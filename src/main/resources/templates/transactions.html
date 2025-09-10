@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Transactions</title>
+  <link rel="stylesheet" th:href="@{/css/transactions-styles.css}">
+</head>
+<body>
+
+<h2>Add a Transaction</h2>
+<form method="post" action="/addTransaction">
+  <label>Date:
+    <input type="date" name="date" required>
+  </label>
+
+  <label>Type:
+    <select name="type" required>
+      <option value="income">Income</option>
+      <option value="expense">Expense</option>
+    </select>
+  </label>
+
+  <label>Amount:
+    <input type="number" name="amount" step="0.01" required>
+  </label>
+
+  <label>Description:
+    <input type="text" name="description" required>
+  </label>
+
+  <button id="transaction-button" type="submit">Add Transaction</button>
+</form>
+
+<h3>Transaction History</h3>
+<table>
+  <thead>
+  <tr>
+    <th>Date</th>
+    <th>Type</th>
+    <th>Amount</th>
+    <th>Description</th>
+    <th>Delete Transaction</th>
+  </tr>
+  </thead>
+
+  <form method="get" action="/transactions">
+    <label for="sort">Sort by:</label>
+    <select name="sort" id="sort">
+      <option value="Newest">Newest</option>
+      <option value="Oldest">Oldest</option>
+      <option value="Highest">Highest</option>
+      <option value="Lowest">Lowest</option>
+      <option value="type">Type</option>
+    </select>
+    <button type="submit">Apply</button>
+  </form>
+
+  <tbody>
+  <tr th:each="transaction : ${transactions}">
+  <td th:text="${transaction.date}"></td>
+  <td th:text="${transaction.type}"></td>
+  <td th:text="${transaction.amount}"></td>
+  <td th:text="${transaction.description}"></td>
+    <td>
+      <form method="post" th:action="@{/deleteTransaction/{id}(id=${transaction.id})}" th:object="${transaction}" action="#">
+        <button id="del" type="submit">Delete</button>
+      </form>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<h4>Your net Income is</h4>
+<p>
+  <span th:text="${income}"></span>
+</p>
+<h4>Your net expense is</h4>
+<p>
+  <span th:text="${expense}"></span>
+</p>
+<h3>Your current balance is</h3>
+<p>
+  <span th:text="${balance}">
+  </span>
+</p>
+
+
+</body>
+</html>

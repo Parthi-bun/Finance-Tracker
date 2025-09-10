@@ -1,7 +1,7 @@
 # Finance-Tracker  
 
 [![Build with Maven](https://img.shields.io/badge/Maven-Build-blue)](https://maven.apache.org/)  
-[![Java](https://img.shields.io/badge/Java-17-orange)](https://www.oracle.com/java/)  
+[![Java](https://img.shields.io/badge/Java-21-orange)](https://www.oracle.com/java/)  
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.0-green)](https://spring.io/projects/spring-boot)  
 [![MySQL](https://img.shields.io/badge/MySQL-8.0-blue)](https://www.mysql.com/)  
 [![License](https://img.shields.io/badge/License-MIT-lightgrey)](LICENSE)  

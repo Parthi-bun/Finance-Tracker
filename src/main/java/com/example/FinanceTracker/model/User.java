@@ -1,10 +1,8 @@
 package com.example.FinanceTracker.model;
 
-import jakarta.persistence.*;
-
-import java.util.ArrayList;
+import javax.persistence.*;
 import java.util.List;
-
+import java.util.ArrayList;
 @Entity
 public class User {
 

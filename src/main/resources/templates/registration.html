@@ -20,7 +20,7 @@
     <br/>
     <button type="submit">Register</button>
 </form>
-
+<div th:if="${errorMessage}" th:text="${errorMessage}" style="color:red;"></div>
 <p>Already have an account? <a th:href="@{/login}">Login here</a></p>
 </body>
 </html>

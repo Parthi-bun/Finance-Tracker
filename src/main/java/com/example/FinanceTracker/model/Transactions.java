@@ -1,6 +1,8 @@
 package com.example.FinanceTracker.model;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
+import java.util.List;
+import java.util.ArrayList;
 
 @Entity
 public class Transactions {

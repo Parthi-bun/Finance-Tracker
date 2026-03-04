@@ -10,5 +10,4 @@ import java.util.List;
 @Repository
 public interface TransactionsRepository extends JpaRepository<Transactions, Long> {
     List<Transactions> findByUser(User user);
-
 }

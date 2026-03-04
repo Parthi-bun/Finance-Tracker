@@ -27,8 +27,14 @@ public class RegistrationController {
 
     @PostMapping("/registration")
     public String registrationProcess(@ModelAttribute("user") User user, Model model){
-        user.setRole("ROLE_USER");
-        userService.saveUser(user);
-        return "redirect:/login";
+        if(userService.duplicateUsername(user.getUsername())){
+            model.addAttribute("errorMessage","This username is already in use");
+            return "registration";
+        }
+        else {
+            user.setRole("ROLE_USER");
+            userService.saveUser(user);
+            return "redirect:/login";
+        }
     }
 }

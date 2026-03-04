@@ -13,6 +13,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
     private final CustomUserDetailsService userDetailsService;
 
     @Autowired
@@ -31,17 +32,19 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/homepage", "/css/**", "/js/**", "/login", "/registration").permitAll()
-                        .anyRequest().authenticated()
-                )
-                .formLogin(form -> form
-                        .loginPage("/login")
-                        .defaultSuccessUrl("/transactions", true)
-                        .permitAll()
-                )
-                .logout(logout -> logout.permitAll());
+                .csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/", "/homepage", "/css/**", "/js/**", "/login", "/registration").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/transactions", true)
+                .permitAll()
+                .and()
+                .logout()
+                .permitAll();
+
         return http.build();
     }
 }

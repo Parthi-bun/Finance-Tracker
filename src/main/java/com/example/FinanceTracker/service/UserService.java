@@ -6,4 +6,5 @@ import com.example.FinanceTracker.model.User;
 public interface UserService {
     void saveUser(User user);
     User getUserByUsername(String username);
+    boolean duplicateUsername(String username);
 }

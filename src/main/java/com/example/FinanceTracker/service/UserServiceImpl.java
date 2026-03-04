@@ -32,6 +32,14 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new UsernameNotFoundException("Username: " + username + " not found"));
     }
 
+    @Override
+    public boolean duplicateUsername(String username) {
+        if (userRepository.findByUsername(username).isPresent()) {
+            return true;
+        }
+        return false;
+    }
+
 
 
 }
